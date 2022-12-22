@@ -1,4 +1,4 @@
-package com.upax.ui_components
+package com.upax.uicomponents
 
 import org.junit.Test
 

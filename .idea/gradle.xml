@@ -13,10 +13,11 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/core" />
             <option value="$PROJECT_DIR$/core/resources" />
-            <option value="$PROJECT_DIR$/core/ui-components" />
+            <option value="$PROJECT_DIR$/core/uicomponents" />
             <option value="$PROJECT_DIR$/feature" />
             <option value="$PROJECT_DIR$/feature/pokedex" />
             <option value="$PROJECT_DIR$/feature/pokedexdata" />
+            <option value="$PROJECT_DIR$/feature/profile" />
           </set>
         </option>
       </GradleProjectSettings>

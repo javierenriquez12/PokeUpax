@@ -1,4 +1,4 @@
-package com.upax.ui_components
+package com.upax.uicomponents
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
