@@ -12,6 +12,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -21,21 +23,22 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.nisuml.mapsdata.domain.model.Location
+import com.upax.maps.databinding.FragmentMapsBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MapsFragment : Fragment(), OnMapReadyCallback{
+class MapsFragment : Fragment(), OnMapReadyCallback {
     private var fusedLocationProviderClient: FusedLocationProviderClient? = null
     private var locationManager: LocationManager? = null
-    private var myLocation = LatLng(-11.111111, -77.111111)
+    private var myLocation = LatLng(-11.111111, -77.111111) //Lima, Perú
     private val permissions = arrayOf(
         Manifest.permission.ACCESS_FINE_LOCATION,
         Manifest.permission.ACCESS_COARSE_LOCATION
     )
     private var listLocation = listOf<Location>()
     val PERMISSION_ALL = 1
-    private val mapsViewModel : MapsViewModel by viewModels()
-
+    private val mapsViewModel: MapsViewModel by viewModels()
+    private lateinit var binding: FragmentMapsBinding
     private fun getMyLocation() {
 
         if (locationManager == null) locationManager =
@@ -46,16 +49,20 @@ class MapsFragment : Fragment(), OnMapReadyCallback{
                     Manifest.permission.ACCESS_FINE_LOCATION
                 ) == PackageManager.PERMISSION_GRANTED &&
                 ActivityCompat.checkSelfPermission(
-                    requireActivity() ,
+                    requireActivity(),
                     Manifest.permission.ACCESS_COARSE_LOCATION
                 ) == PackageManager.PERMISSION_GRANTED
             ) {
                 val task = fusedLocationProviderClient?.lastLocation
                 task?.addOnSuccessListener {
-                    myLocation = LatLng(it.latitude,it.longitude)
+                    myLocation = LatLng(it.latitude, it.longitude)
                 }
                 task?.addOnFailureListener {
-                    Toast.makeText(activity,"Hubo un problema al cargar el mapa",Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        activity,
+                        "Hubo un problema al cargar el mapa",
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             }
         }
@@ -65,14 +72,17 @@ class MapsFragment : Fragment(), OnMapReadyCallback{
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-            return inflater.inflate(R.layout.fragment_maps, container, false)
+    ): View {
+        binding = FragmentMapsBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        locationManager = requireActivity().getSystemService(AppCompatActivity.LOCATION_SERVICE) as LocationManager
-        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+        locationManager =
+            requireActivity().getSystemService(AppCompatActivity.LOCATION_SERVICE) as LocationManager
+        fusedLocationProviderClient =
+            LocationServices.getFusedLocationProviderClient(requireActivity())
         getMyLocation()
         activity?.requestPermissions(permissions, PERMISSION_ALL)
         mapsViewModel.fetchLocations()
@@ -80,6 +90,7 @@ class MapsFragment : Fragment(), OnMapReadyCallback{
             when (it) {
                 is MapsState.Locations -> {
                     this.listLocation = it.list
+                    setUpListLocationsInfo(it.list)
                     val mapFragment =
                         childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
                     mapFragment?.getMapAsync(this)
@@ -88,11 +99,30 @@ class MapsFragment : Fragment(), OnMapReadyCallback{
         }
     }
 
+    private fun setUpListLocationsInfo(list: List<Location>) {
+        binding.mapsLocationsRecyclerView.apply {
+            adapter = MapsAdapter(list)
+            layoutManager = LinearLayoutManager(requireContext())
+            addItemDecoration(
+                DividerItemDecoration(
+                    requireContext(),
+                    DividerItemDecoration.VERTICAL
+                )
+            )
+        }
+    }
+
     override fun onMapReady(googleMap: GoogleMap) {
-        googleMap.addMarker(MarkerOptions().position(myLocation).title("Marker in my location"))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLocation,15.0f))
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(myLocation, 15.0f))
         listLocation.forEach {
-            googleMap.addMarker(MarkerOptions().position(LatLng(it.latitude.toDouble(),it.latitude.toDouble())))
+            googleMap.addMarker(
+                MarkerOptions().position(
+                    LatLng(
+                        it.latitude.toDouble(),
+                        it.longitude.toDouble()
+                    )
+                )
+            )
         }
     }
 }

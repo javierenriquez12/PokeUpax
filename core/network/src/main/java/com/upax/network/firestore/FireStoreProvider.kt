@@ -11,15 +11,13 @@ import javax.inject.Inject
 
 class FireStoreProvider @Inject constructor(private val firestore: FirebaseFirestore) {
     fun addLocation(locationEntity: LocationEntity) {
-        firestore.collection("locations")
+        firestore.collection(Constants.LOCATIONS_COLLECTION)
             .add(locationEntity)
     }
 
     suspend fun getLocation(): List<LocationEntity> {
-        return firestore.collection("locations").get().await().documents.map {
-            Log.d("prueba","122")
-            val local = it.toObject(LocationEntity::class.java)
-            LocationEntity("1231", "13231", "31231")
+        return firestore.collection(Constants.LOCATIONS_COLLECTION).get().await().documents.map {
+            it.toObject(LocationEntity::class.java) as LocationEntity
         }
     }
 }
