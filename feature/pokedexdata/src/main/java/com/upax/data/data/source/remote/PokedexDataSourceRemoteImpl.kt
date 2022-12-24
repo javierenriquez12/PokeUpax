@@ -1,5 +1,9 @@
 package com.upax.data.data.source.remote
 
+import com.upax.data.data.entity.PokedexEntity
+import com.upax.data.data.entity.pokemon.EncounterEntity
+import com.upax.data.data.entity.pokemon.PokemonEntity
+import com.upax.data.data.entity.pokemon.SpeciesDetailEntity
 import com.upax.data.data.util.Constants.QUERY_PARAMS_LIMIT_POKEMONS
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -10,7 +14,7 @@ import javax.inject.Inject
 class PokedexDataSourceRemoteImpl @Inject constructor(
     private val apiService: ApiService
 ) : PokedexDataSourceRemote {
-    override suspend fun fetchPokemons(): Flow<com.upax.data.data.entity.PokedexEntity> {
+    override suspend fun fetchPokemons(): Flow<PokedexEntity> {
         return flow {
             val connect = apiService.fetchPokemons(
                 limit = QUERY_PARAMS_LIMIT_POKEMONS
@@ -23,7 +27,7 @@ class PokedexDataSourceRemoteImpl @Inject constructor(
         }.flowOn(Dispatchers.IO)
     }
 
-    override suspend fun fetchPokemon(pokemonId: String): Flow<com.upax.data.data.entity.pokemon.PokemonEntity> {
+    override suspend fun fetchPokemon(pokemonId: String): Flow<PokemonEntity> {
         return flow {
             val connect = apiService.fetchPokemon(
                 idPokemon = pokemonId
@@ -36,7 +40,7 @@ class PokedexDataSourceRemoteImpl @Inject constructor(
         }.flowOn(Dispatchers.IO)
     }
 
-    override suspend fun fetchEncounterPokemon(pokemonId: String): Flow<List<com.upax.data.data.entity.pokemon.EncounterEntity>> {
+    override suspend fun fetchEncounterPokemon(pokemonId: String): Flow<List<EncounterEntity>> {
         return flow {
             val connect = apiService.fetchEncountersPokemon(
                 idPokemon = pokemonId
@@ -49,7 +53,7 @@ class PokedexDataSourceRemoteImpl @Inject constructor(
         }.flowOn(Dispatchers.IO)
     }
 
-    override suspend fun fetchSpeciesPokemon(pokemonId: String): Flow<com.upax.data.data.entity.pokemon.SpeciesDetailEntity> {
+    override suspend fun fetchSpeciesPokemon(pokemonId: String): Flow<SpeciesDetailEntity> {
         return flow {
             val connect = apiService.fetchSpeciesPokemon(
                 idPokemon = pokemonId

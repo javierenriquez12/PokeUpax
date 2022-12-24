@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "207595791950",
+    "project_id": "pokeupax",
+    "storage_bucket": "pokeupax.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:207595791950:android:4b0dfc77f2c6487117051f",
+        "android_client_info": {
+          "package_name": "com.upax.pokedex"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "207595791950-c0ogjobrkuuuie3vam8u5igkdm4s6tqp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABQXW0PBTV8mtrafgZFu1wknFmlB9iYI0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "207595791950-c0ogjobrkuuuie3vam8u5igkdm4s6tqp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

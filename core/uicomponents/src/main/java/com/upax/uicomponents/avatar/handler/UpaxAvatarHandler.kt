@@ -12,9 +12,9 @@ internal class UpaxAvatarHandler (avatarInterface: BaseView<ViewUpaxAvatarBindin
     fun setAvatarType(avatarType: UpaxAvatarType){
         val visibleViews = factory.getAvatarType(avatarType).visibleViews()
         with(view){
-            avatarIconView.isVisible(visibleViews.first)
+            avatarLetterView.isVisible(visibleViews.first)
             avatarPlaceHolderView.isVisible(visibleViews.second)
-            avatarIconView.isVisible(visibleViews.third)
+            avatarImageView.isVisible(visibleViews.third)
         }
     }
 }

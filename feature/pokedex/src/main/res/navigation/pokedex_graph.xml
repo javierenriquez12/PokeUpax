@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/pokedexFragment"
-        android:name="com.upax.pokedex.PokedexFragment">
+        android:name="com.upax.ui.PokedexFragment">
         <action
             android:id="@+id/action_pokedexFragment_to_pokemonDetailFragment"
             app:destination="@id/pokemonDetailFragment"
@@ -14,11 +14,12 @@
             >
             <argument android:name="id_pokemon" />
         </action>
-
+        <deepLink
+            app:uri="android-app://com.upax.pokedex.app/pokedexFragment" />
     </fragment>
     <dialog
         android:id="@+id/pokemonDetailFragment"
-        android:name="com.upax.pokedex.detail.PokemonDetailFragment"
+        android:name="com.upax.ui.detail.PokemonDetailFragment"
         android:label="fragment_pokedex_detail">
     </dialog>
 </navigation>

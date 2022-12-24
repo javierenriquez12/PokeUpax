@@ -3,9 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/avatarCardView"
-
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="74dp"
+    android:layout_height="74dp"
+    app:cardCornerRadius="74dp"
     app:cardElevation="0dp">
 
     <TextView
@@ -20,7 +20,7 @@
         tools:text="FL" />
 
     <ImageView
-        android:id="@+id/avatarPlaceHolderView"
+        android:id="@+id/avatarImageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="@null"
@@ -28,7 +28,7 @@
         android:visibility="gone" />
 
     <ImageView
-        android:id="@+id/avatarIconView"
+        android:id="@+id/avatarPlaceHolderView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:contentDescription="@null"

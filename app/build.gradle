@@ -4,6 +4,7 @@ plugins {
     id 'com.google.dagger.hilt.android'
     id 'kotlin-kapt'
     id 'androidx.navigation.safeargs'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -41,9 +42,14 @@ android {
 
 dependencies {
     implementation project(':feature:pokedex')
+    implementation project(':feature:profile')
+    implementation project(':feature:home')
+    implementation project(':feature:maps')
+    implementation project(':feature:mapsdata')
     implementation libs.bundles.kotlin
     //Glide
     implementation libs.glide
+    implementation 'com.google.android.gms:play-services-location:21.0.1'
     kapt libs.glide.compiler
     //dagger
     implementation libs.dagger

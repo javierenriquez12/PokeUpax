@@ -10,6 +10,7 @@ glide = "4.13.2"
 okhttp = "4.9.3"
 retrofit = "2.9.0"
 kotlinSerialization = "1.4.1"
+
 [libraries]
 #lifecycle
 lifecycle = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
@@ -34,12 +35,17 @@ glide-compiler = { module = "com.github.bumptech.glide:compiler", version.ref = 
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofit-convert-gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "retrofit" }
 okhttp = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp" }
+#firebase
+firebase-bom = "com.google.firebase:firebase-bom:31.0.2"
+firestore = { module = "com.google.firebase:firebase-firestore-ktx" }
 #libraries
 fragment-ktx = "androidx.fragment:fragment-ktx:1.5.5"
 hilt = 'androidx.hilt:hilt-navigation-fragment:1.0.0'
 navigatin-ui-ktx = 'androidx.navigation:navigation-ui-ktx:2.5.3'
 appcompat = 'androidx.appcompat:appcompat:1.5.1'
 constraint = 'androidx.constraintlayout:constraintlayout:2.1.4'
+material = 'com.google.android.material:material:1.7.0'
+
 [bundles]
 room = ["room-ktx"]
 kotlin = ["kotlin-ktx"]

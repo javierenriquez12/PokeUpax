@@ -18,9 +18,6 @@ android {
     }
 
     buildTypes {
-        debug {
-            buildConfigField "String", "API_URL", "\"https://pokeapi.co/\""
-        }
 
         release {
             buildConfigField "String", "API_URL", "\"https://pokeapi.co/\""
@@ -48,4 +45,6 @@ dependencies {
     //room
     implementation libs.bundles.room
     kapt libs.room.compiler
+    implementation project(':core:local')
+    implementation project(':core:network')
 }

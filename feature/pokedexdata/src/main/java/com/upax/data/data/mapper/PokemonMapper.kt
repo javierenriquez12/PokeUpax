@@ -1,6 +1,6 @@
 package com.upax.data.data.mapper
 
-import com.upax.data.data.source.local.entity.PokemonEntityDao
+import com.upax.local.entity.PokemonEntityDao
 import com.upax.data.domain.model.Pokedex
 import com.upax.data.domain.model.Pokemon
 import com.upax.data.domain.model.Result
@@ -30,14 +30,14 @@ object PokemonMapper {
 
     fun com.upax.data.data.entity.PokedexEntity.listToLocal() =
         this.results.mapIndexed { index, it ->
-            PokemonEntityDao(
+            com.upax.local.entity.PokemonEntityDao(
                 index.toString(),
                 it.name,
                 it.url
             )
         }
 
-    fun listToDomain(pokemonList: List<PokemonEntityDao>) =
+    fun listToDomain(pokemonList: List<com.upax.local.entity.PokemonEntityDao>) =
         Pokedex(
             pokemonList = pokemonList.mapIndexed { index, it ->
                 Result(

@@ -17,7 +17,7 @@ enum class UpaxAvatarType(val typeId: Int) {
                 PLACEHOLDER.typeId -> PLACEHOLDER
                 LETTERS.typeId -> LETTERS
                 IMG.typeId -> IMG
-                else -> throw error("Unexpected typeId: $id")
+                else -> PLACEHOLDER
             }
         }
     }

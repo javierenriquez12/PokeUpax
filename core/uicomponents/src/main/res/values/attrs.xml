@@ -11,7 +11,7 @@
 
         <attr name="upax_avatar_letters" format="string|reference" />
         <attr name="upax_avatar_icon" format="reference" />
-        <attr name="upax_avatar_img" format="reference" />
+        <attr name="upax_avatar_placeholder" format="reference" />
         <attr name="upax_avatar_background_color" format="color|reference" />
         <attr name="upax_avatar_icon_tint" format="color|reference" />
         <attr name="upax_avatar_letter_color" format="color|reference" />
